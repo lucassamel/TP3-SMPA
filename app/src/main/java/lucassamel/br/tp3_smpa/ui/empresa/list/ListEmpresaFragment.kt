@@ -6,25 +6,57 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.list_empresa_fragment.*
 import lucassamel.br.tp3_smpa.R
+import lucassamel.br.tp3_smpa.dao.empresa.EmpresaDaoFirestore
+import lucassamel.br.tp3_smpa.model.AppUtil
+import lucassamel.br.tp3_smpa.model.Empresa
+import lucassamel.br.tp3_smpa.ui.empresa.adapter.EmpresaRecyclerAdapter
 
 class ListEmpresaFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = ListEmpresaFragment()
-    }
 
     private lateinit var viewModel: ListEmpresaViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+        val application = requireActivity().application
+
+        val firebaseAuth = FirebaseAuth.getInstance()
+        val firebaseUser = firebaseAuth.currentUser
+        if (firebaseUser == null)
+            findNavController().popBackStack()
+
+        val listCarros = ListEmpresaViewModelFactory(EmpresaDaoFirestore())
+        viewModel = ViewModelProvider(this,listCarros)
+            .get(ListEmpresaViewModel::class.java)
+
+        viewModel.carros.observe(viewLifecycleOwner){
+            setupListViewEmpresas(it)
+        }
+
+        viewModel.atualizarQuantidade()
+
         return inflater.inflate(R.layout.list_empresa_fragment, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(ListEmpresaViewModel::class.java)
-        // TODO: Use the ViewModel
+
+    private fun setupListViewEmpresas(empresas: List<Empresa>) {
+        empresasList.adapter = EmpresaRecyclerAdapter(empresas) {
+            AppUtil.empresaSelecionada = it
+//            findNavController().navigate(R.id.)
+        }
+        empresasList.layoutManager = LinearLayoutManager(requireContext())
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        fabCadastroEmpresa.setOnClickListener {
+            findNavController().navigate(R.id.action_listEmpresaFragment_to_cadastroEmpresaFragment)
+        }
     }
 
 }

@@ -24,7 +24,7 @@ class LoginFragment : Fragment() {
 
         viewModel.status.observe(viewLifecycleOwner, Observer {
             if (it){
-                findNavController().navigate(R.id.action_loginFragment_to_listPerguntasFragment)
+                findNavController().navigate(R.id.action_loginFragment_to_listEmpresaFragment)
             }
         })
 
