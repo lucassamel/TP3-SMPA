@@ -4,6 +4,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.FirebaseFirestore
@@ -39,11 +41,22 @@ class EmpresaRecyclerAdapter(private val empresas: List<Empresa>,
             deleteEmpresa(empresa)
         }
 
+        holder.itemView.btnAvaliacoes.setOnClickListener {
+            Navigation.createNavigateOnClickListener(R.id.action_listEmpresaFragment_to_listPerguntasFragment).onClick(holder.itemView)
+        }
+
         holder.itemView.setOnClickListener {
             actionClick(empresa)
 
         }
     }
+
+//    private fun avalaiacoesEmpresa(empresa: Empresa): Task<Void> {
+//        val collection = FirebaseFirestore.getInstance().collection("empresas")
+//
+//        return
+//
+//    }
 
     override fun getItemCount(): Int = empresas.size
 
