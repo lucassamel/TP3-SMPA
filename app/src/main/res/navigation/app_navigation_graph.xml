@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_loginFragment_to_cadastroFragment"
             app:destination="@id/cadastroFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_listEmpresaFragment"
+            app:destination="@id/listEmpresaFragment" />
     </fragment>
     <fragment
         android:id="@+id/cadastroFragment"
@@ -22,5 +25,47 @@
         <action
             android:id="@+id/action_cadastroFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/listPerguntasFragment"
+        android:name="lucassamel.br.tp3_smpa.ui.pergunta.list.ListPerguntasFragment"
+        android:label="list_perguntas_fragment"
+        tools:layout="@layout/list_perguntas_fragment" >
+        <action
+            android:id="@+id/action_listPerguntasFragment_to_cadastroPerguntasFragment"
+            app:destination="@id/cadastroPerguntasFragment" />
+        <action
+            android:id="@+id/action_listPerguntasFragment_to_listEmpresaFragment"
+            app:destination="@id/listEmpresaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cadastroEmpresaFragment"
+        android:name="lucassamel.br.tp3_smpa.ui.empresa.form.CadastroEmpresaFragment"
+        android:label="cadastro_empresa_fragment"
+        tools:layout="@layout/cadastro_empresa_fragment" >
+        <action
+            android:id="@+id/action_cadastroEmpresaFragment_to_listEmpresaFragment"
+            app:destination="@id/listEmpresaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/listEmpresaFragment"
+        android:name="lucassamel.br.tp3_smpa.ui.empresa.list.ListEmpresaFragment"
+        android:label="list_empresa_fragment"
+        tools:layout="@layout/list_empresa_fragment" >
+        <action
+            android:id="@+id/action_listEmpresaFragment_to_cadastroEmpresaFragment"
+            app:destination="@id/cadastroEmpresaFragment" />
+        <action
+            android:id="@+id/action_listEmpresaFragment_to_listPerguntasFragment"
+            app:destination="@id/listPerguntasFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cadastroPerguntasFragment"
+        android:name="lucassamel.br.tp3_smpa.ui.pergunta.form.CadastroPerguntasFragment"
+        android:label="cadastro_perguntas_fragment"
+        tools:layout="@layout/cadastro_perguntas_fragment" >
+        <action
+            android:id="@+id/action_cadastroPerguntasFragment_to_listPerguntasFragment"
+            app:destination="@id/listPerguntasFragment" />
     </fragment>
 </navigation>
