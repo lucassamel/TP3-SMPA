@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import lucassamel.br.tp3_smpa.dao.empresa.EmpresaDao
+import lucassamel.br.tp3_smpa.dao.pergunta.PerguntaDao
 import lucassamel.br.tp3_smpa.model.Empresa
 
 class CadastroEmpresaViewModel(

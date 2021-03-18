@@ -3,6 +3,7 @@ package lucassamel.br.tp3_smpa.ui.empresa.list
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import lucassamel.br.tp3_smpa.dao.empresa.EmpresaDaoFirestore
+import lucassamel.br.tp3_smpa.dao.pergunta.PerguntaDaoFirestore
 
 class ListEmpresaViewModelFactory(
     private val empresaDao: EmpresaDaoFirestore
