@@ -30,7 +30,7 @@ class PerguntaRecyclerAdapter(
         val view = LayoutInflater
                 .from(parent.context)
                 .inflate(
-                        R.layout.list_empresa_recycler,
+                        R.layout.list_pergunta_recycler,
                         parent, false
                 )
         return PerguntaViewHolder(view)

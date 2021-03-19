@@ -12,7 +12,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:text="Nome "
-        android:textSize="24sp"
+        android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/textView6"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -52,8 +52,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="Nome: "
-        android:textSize="24sp"
+        android:text="Empresa: "
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

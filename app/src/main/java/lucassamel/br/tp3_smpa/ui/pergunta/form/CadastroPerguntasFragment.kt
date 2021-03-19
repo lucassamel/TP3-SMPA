@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import kotlinx.android.synthetic.main.cadastro_perguntas_fragment.*
 import lucassamel.br.tp3_smpa.R
 import lucassamel.br.tp3_smpa.dao.empresa.EmpresaDaoFirestore
 import lucassamel.br.tp3_smpa.dao.pergunta.PerguntaDaoFirestore
@@ -51,7 +52,13 @@ class CadastroPerguntasFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        btnPerguntaCdastro.setOnClickListener {
+            val titulo = editTextPergunataTitulo.text.toString()
+            val pontuacao = 0
+            val comentario = "Comentario teste"
 
+            viewModel.insertPergunta(titulo,pontuacao,comentario)
+        }
 
     }
 

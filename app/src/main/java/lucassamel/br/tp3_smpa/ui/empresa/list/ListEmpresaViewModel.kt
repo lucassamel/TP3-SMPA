@@ -12,7 +12,7 @@ class ListEmpresaViewModel(
 ) : ViewModel() {
 
     private val _empresas = MutableLiveData<List<Empresa>>()
-    val carros: LiveData<List<Empresa>> = _empresas
+    val empresas: LiveData<List<Empresa>> = _empresas
 
     fun atualizarQuantidade() {
         empresaDao.all() // task<>

@@ -7,7 +7,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
 import lucassamel.br.tp3_smpa.model.Empresa
 
-class EmpresaDaoFirestore: EmpresaDao {
+class EmpresaDaoFirestore : EmpresaDao {
 
     private val collection = FirebaseFirestore
         .getInstance()

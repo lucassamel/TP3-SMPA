@@ -13,7 +13,7 @@ class ListPerguntasViewModel(
 ) : ViewModel() {
 
     private val _perguntas = MutableLiveData<List<Pergunta>>()
-    val carros: MutableLiveData<List<Pergunta>> = _perguntas
+    val perguntas: MutableLiveData<List<Pergunta>> = _perguntas
 
     fun atualizarQuantidade() {
         perguntaDao.all() // task<>

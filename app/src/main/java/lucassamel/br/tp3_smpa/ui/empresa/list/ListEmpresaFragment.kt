@@ -22,6 +22,7 @@ class ListEmpresaFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+
         val application = requireActivity().application
 
         val firebaseAuth = FirebaseAuth.getInstance()
@@ -29,11 +30,12 @@ class ListEmpresaFragment : Fragment() {
         if (firebaseUser == null)
             findNavController().popBackStack()
 
-        val listCarros = ListEmpresaViewModelFactory(EmpresaDaoFirestore())
-        viewModel = ViewModelProvider(this,listCarros)
+       val listEmpresas = ListEmpresaViewModelFactory(EmpresaDaoFirestore())
+
+        viewModel = ViewModelProvider(this,listEmpresas)
             .get(ListEmpresaViewModel::class.java)
 
-        viewModel.carros.observe(viewLifecycleOwner){
+        viewModel.empresas.observe(viewLifecycleOwner){
             setupListViewEmpresas(it)
         }
 
@@ -46,10 +48,13 @@ class ListEmpresaFragment : Fragment() {
     private fun setupListViewEmpresas(empresas: List<Empresa>) {
         empresasList.adapter = EmpresaRecyclerAdapter(empresas) {
             AppUtil.empresaSelecionada = it
-//            findNavController().navigate(R.id.)
+
+           findNavController().navigate(R.id.action_listEmpresaFragment_to_listPerguntasFragment)
         }
         empresasList.layoutManager = LinearLayoutManager(requireContext())
     }
+
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
