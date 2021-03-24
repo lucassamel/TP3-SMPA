@@ -56,11 +56,20 @@ class ListEmpresaFragment : Fragment() {
 
 
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val firebaseAuth = FirebaseAuth.getInstance()
+        val firebaseUser = firebaseAuth.currentUser
+
         fabCadastroEmpresa.setOnClickListener {
             findNavController().navigate(R.id.action_listEmpresaFragment_to_cadastroEmpresaFragment)
+        }
+
+        fabLogout.setOnClickListener {
+            firebaseAuth.signOut()
+            findNavController().navigate(R.id.action_listEmpresaFragment_to_loginFragment)
         }
     }
 
