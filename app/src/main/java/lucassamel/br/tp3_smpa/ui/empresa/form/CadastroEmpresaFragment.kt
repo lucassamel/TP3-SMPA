@@ -9,6 +9,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.security.crypto.EncryptedSharedPreferences
+import androidx.security.crypto.MasterKeys
+import androidx.security.crypto.MasterKeys.AES256_GCM_SPEC
+import androidx.security.crypto.MasterKeys.getOrCreate
 import kotlinx.android.synthetic.main.cadastro_empresa_fragment.*
 import lucassamel.br.tp3_smpa.R
 import lucassamel.br.tp3_smpa.dao.empresa.EmpresaDaoFirestore
@@ -52,7 +56,20 @@ class CadastroEmpresaFragment : Fragment() {
         btnEmpresaCadastro.setOnClickListener {
             val nomeEmpresa = editTextEmpresaNome.text.toString()
             val bairro = editTextEmpresaBairro.text.toString()
-            viewModel.inserCarro(nomeEmpresa,bairro)
+
+            val masterKeyAlias = getOrCreate(AES256_GCM_SPEC)
+
+            val cryptoNomeEmpresa = EncryptedSharedPreferences.create(
+                nomeEmpresa, masterKeyAlias, requireContext(),
+                EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+                EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM)
+
+            val cryptoBairro = EncryptedSharedPreferences.create(
+                bairro, masterKeyAlias, requireContext(),
+                EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+                EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM)
+
+            viewModel.inserCarro(cryptoNomeEmpresa.toString(),cryptoBairro.toString())
         }
     }
 

@@ -7,6 +7,8 @@ import android.widget.TextView
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.tasks.Task
+import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.list_empresa_recycler.view.*
 import kotlinx.android.synthetic.main.list_pergunta_recycler.view.*
@@ -24,6 +26,7 @@ class PerguntaRecyclerAdapter(
         : RecyclerView.ViewHolder(itemView) {
         val textComentario: TextView = itemView.textViewPeruntaComentario
         val textPontuacao: TextView = itemView.textViewPerguntaPontuacao
+        val textTitulo: TextView = itemView.textViewPerguntasTitutlo
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PerguntaViewHolder {
@@ -38,8 +41,9 @@ class PerguntaRecyclerAdapter(
 
     override fun onBindViewHolder(holder: PerguntaViewHolder, position: Int) {
         val pergunta = perguntas[position]
-        holder.textComentario.text = pergunta.comentario
+        holder.textComentario.text = pergunta.comentario.toString()
         holder.textPontuacao.text = pergunta.pontuacao.toString()
+        holder.textTitulo.text = pergunta.titutlo.toString()
         holder.itemView.btnDeletePergunta.setOnClickListener {
             deletePergunta(pergunta)
         }
@@ -60,7 +64,8 @@ class PerguntaRecyclerAdapter(
         val collection = FirebaseFirestore.getInstance().collection("perguntas")
 
         return collection
-                .document(pergunta.empresa!!.toString())
+                .document(pergunta.titutlo!!.toString())
                 .delete()
     }
 }
+
