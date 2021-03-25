@@ -6,7 +6,7 @@ import com.google.firebase.firestore.DocumentReference
 class Pergunta(
         @DocumentId
         val titutlo: String? = null,
-        val pontuacao: Int? = 0,
+        val pontuacao: Int? = null,
         val empresa: DocumentReference? = null,
         val comentario: String? = "Sem comentários"
 ) {
